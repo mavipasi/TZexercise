@@ -9,15 +9,14 @@ which gdialog 2> /dev/null && DIALOG=gdialog || DIALOG=dialog
 
 end() {
 
-	rm -f $FILE $FILE2 $ERROR
-	exit
+rm -f $FILE $FILE2 $ERROR
+exit
 }
 
 while true
 do
-	$DIALOG --inputbox "Insert Location (Continent/City):" 8 35 2> 		$FILE1 || end
-
-	if cat $FILE1 | timezone > $FILE2 2 > $ERROR
+$DIALOG --inputbox "Insert Location (Continent/City):" 8 35 2> $FILE1 || end
+if cat $FILE1 | /home/User/TZexercise/timezone > $FILE2 2 > $ERROR
 	then
 		MSG="Result: 'cat $FILE2'\n\nCOntinue?"
 		$DIALOG --yesno "MSG" 7 20 || end

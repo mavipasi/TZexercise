@@ -6,7 +6,7 @@ read EXPR
 export TZ=$EXPR
 echo date > $FILE
 sh $FILE
-EXIT_STATUS=$?
+EXIT STATUS=$?
 rm -f $FILE
 exit $EXIT_STATUS
 
