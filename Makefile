@@ -1,6 +1,13 @@
 install: 
 	install timezone SelectTZ /usr/local/bin
 	which gdialog >/dev/null 2>&1 || install gdialog /usr/local/bin
+	install SelectTZ-ES.mo /usr/share/locale/es_ES/LC_MESSAGES/SelectTZ.mo
+SelectTZ.pot: SelectTZ 
+	xgettext -o SelectTZ.pot -L Shell SelectTZ
+
+Select-ES.mo: SelectTZ-ES.po
+	msgfmt -o SelectTZ-ES.mo SelectTZ-ES.po
+
 clone:
 	git clone https://github.com/mavipasi/TZexercise.git
 download:

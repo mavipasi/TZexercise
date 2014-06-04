@@ -5,6 +5,8 @@ FILE1=/tmp/tzone1-$$
 FILE2=/tmp/tzone2-$$
 ERROR=/tmp/err-$$
 
+GETTEXT="gettext -d SelectTZ-es"
+
 which gdialog 2> /dev/null && DIALOG=gdialog || DIALOG=dialog
 
 end() {
@@ -15,15 +17,15 @@ end() {
 
 while true
 do
-	$DIALOG --inputbox "Insert Location (Continent/City):" 8 35 2> $FILE1 || end
+	$DIALOG --inputbox "`$GETTEXT \"Enter location (Continent/City):\"`" 8 35 2> $FILE1 || end
 
 	if cat $FILE1 | timezone > $FILE2 2> $ERROR
 	then
-		MSG="Result: `cat $FILE2`\n\nCOntinue?"
-		$DIALOG --yesno "MSG" 7 20 || end
+		MSG="`$GETTEXT \"Result:\"` `cat $FILE2`\\n\\n`$GETTEXT \"Continue?\"`"
+		$DIALOG --yesno "$MSG" 7 20 || end
 	else
-		MSG="Error:\n\n`cat $ERROR`\n\nContinue?"
-		$DIALOG --YESNO "MSG" 10 35 || end
+		MSG="`$GETTEXT \"Error:\"`\\n\\n`cat $ERROR`\\n\\n`$GETTEXT \"Continue?\"`"
+		$DIALOG --YESNO "$MSG" 10 35 || end
 	fi
 done
 
