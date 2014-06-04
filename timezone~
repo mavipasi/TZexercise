@@ -2,13 +2,15 @@
 
 FILE=/tmp/tzone-$$
 
-read EXPR
-export TZ=$EXPR
-echo date > $FILE
+read VAR
+export TZ=$VAR
+echo date>$FILE
 sh $FILE
-EXIT STATUS=$?
+EXIT_STATUS=$?
 rm -f $FILE
 exit $EXIT_STATUS
+
+
 
 
 

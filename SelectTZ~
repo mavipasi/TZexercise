@@ -15,14 +15,14 @@ end() {
 
 while true
 do
-	$DIALOG --inputbox "Insert Location (Continent/City):" 8 35 2> 		$FILE1 || end
+	$DIALOG --inputbox "Insert Location (Continent/City):" 8 35 2> $FILE1 || end
 
-	if cat $FILE1 | timezone > $FILE2 2 > $ERROR
+	if cat $FILE1 | timezone > $FILE2 2> $ERROR
 	then
-		MSG="Result: 'cat $FILE2'\n\nCOntinue?"
+		MSG="Result: `cat $FILE2`\n\nCOntinue?"
 		$DIALOG --yesno "MSG" 7 20 || end
 	else
-		MSG="Error:\n\n'cat $ERROR'\n\nContinue?"
+		MSG="Error:\n\n`cat $ERROR`\n\nContinue?"
 		$DIALOG --YESNO "MSG" 10 35 || end
 	fi
 done
